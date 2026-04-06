@@ -14,5 +14,4 @@ tasks:
       cd clangd_extensions.nvim
       nvim_runtime="$(nvim --clean --headless -c 'echo $VIMRUNTIME' -c 'q' 2>&1)/lua/"
       jq --arg rt "$nvim_runtime" '.workspace.library = [$rt, "lua/"]' .emmyrc.json > .emmyrc.ci.json
-      mv .emmyrc.ci.json .emmyrc.json
-      nix develop --command emmylua_check --warnings-as-errors .
+      nix develop --command emmylua_check --config .emmyrc.ci.json --warnings-as-errors .
